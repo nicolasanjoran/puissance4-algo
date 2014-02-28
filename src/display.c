@@ -9,7 +9,9 @@ void DISPLAY_DisplayGrid(char grid[][6])
 		printf("|");
 		for(j=0 ; j<7 ; j++)
 		{
-			printf("%d|", grid[j][i]);
+			if(grid[j][i] == 1) printf("\033[35m");
+			else if (grid[j][i] == 2) printf("\033[36m");
+			printf("%d\033[37m|", grid[j][i]);
 		}
 		printf("\n");
 	}
@@ -25,5 +27,5 @@ int DISPLAY_GetNextColumn()
 		printf("COLUMN: ");
 		gets(lineIn);
 	}
-	return (int)(lineIn[0])-49;
+	return (int)(lineIn[0])-48;
 }

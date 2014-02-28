@@ -34,6 +34,7 @@ int GAME_main(char mode, char level)
 			// Interaction with player (console mode first)
 			// **Display grid for user.
 			do{
+				system("clear");
 				DISPLAY_DisplayGrid(globalGrid);
 				nextColumn = DISPLAY_GetNextColumn();
 			}while(GRID_setNextTurn(globalGrid, nextColumn, currentPlayer));
@@ -47,11 +48,11 @@ int GAME_main(char mode, char level)
 			currentPlayer = 1;
 		}else{
 			// End of Game, no current player set.
-			printf("END OF GAME\n");
 			gameResult = 3;
 		}
 		gameResult = GAME_IsFinished();	
 	}
+	printf("END OF GAME\n");
 	return 0;
 
 }
@@ -64,7 +65,6 @@ char GAME_IsFinished()
 	{
 		total += GRID_getColumnCasesLeft(globalGrid, i);
 	}
-	printf("TOTAL: %d\n", total);
 	if(GRID_isFinished(globalGrid))
 	{
 		printf("A player won\n");

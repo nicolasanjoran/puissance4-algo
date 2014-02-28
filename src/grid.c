@@ -138,7 +138,7 @@ char GRID_isFinished(char grid[][6])
 	// Check if 4-coins raw is found
 	if(nbCoins==4)
 	{
-		printf("Diagonal 2 -> Player WON\n");
+		printf("Player %d WON\n", currentPlayerChecking);
 		return 1;
 	}
 	return 0;
