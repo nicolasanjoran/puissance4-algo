@@ -44,7 +44,8 @@ int GAME_main(char mode, char level)
 			// PC IA Processing...
 			srand(time(NULL));
 			int randomColumn = (rand()%8);
-			GRID_setNextTurn(globalGrid, randomColumn, currentPlayer);
+			//GRID_setNextTurn(globalGrid, randomColumn, currentPlayer);
+			GRID_setNextTurn(globalGrid, MINIMAX_minimax(globalGrid,10000), currentPlayer);
 			currentPlayer = 1;
 		}else{
 			// End of Game, no current player set.
@@ -61,14 +62,18 @@ char GAME_IsFinished()
 {
 	int i=0;
 	int total=0;
+	int gameResult = 0;
 	for(i=0 ; i<7 ; i++)
 	{
 		total += GRID_getColumnCasesLeft(globalGrid, i);
 	}
-	if(GRID_isFinished(globalGrid))
+	gameResult = GRID_isFinished(globalGrid);
+	if(gameResult)
 	{
-		printf("A player won\n");
-		return 3;
+		system("clear");
+		DISPLAY_DisplayGrid(globalGrid);
+		printf("PLAYER %d WON\n", gameResult);
+		return gameResult;
 	}
 	else if(total == 0)
 	{

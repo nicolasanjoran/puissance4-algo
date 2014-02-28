@@ -3,7 +3,9 @@
 void DISPLAY_DisplayGrid(char grid[][6])
 {
 	int i,j;
-	printf("_________\n");
+	printf("---------------\n");
+	printf("|1|2|3|4|5|6|7|\n");
+	printf("---------------\n");
 	for(i=5 ; i>=0 ; i--)
 	{
 		printf("|");
@@ -15,6 +17,7 @@ void DISPLAY_DisplayGrid(char grid[][6])
 		}
 		printf("\n");
 	}
+	printf("---------------\n");
 }
 
 int DISPLAY_GetNextColumn()
