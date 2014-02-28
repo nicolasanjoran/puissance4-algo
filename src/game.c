@@ -22,8 +22,11 @@ void GAME_Init()
 int GAME_main(char mode, char level)
 {
 	GAME_Init();
-
-	while(gameResult)
+	printf("START OF GAME\n");
+	DISPLAY_DisplayGrid(globalGrid);
+	srand(time(NULL));
+	currentPlayer = (rand()%2 +1);
+	while(gameResult == 0)
 	{
 		if(currentPlayer == 1)
 		{
@@ -34,14 +37,20 @@ int GAME_main(char mode, char level)
 				DISPLAY_DisplayGrid(globalGrid);
 				nextColumn = DISPLAY_GetNextColumn();
 			}while(GRID_setNextTurn(globalGrid, nextColumn, currentPlayer));
-
-			gameResult = GAME_IsNotFinished();	
+			currentPlayer=2;
+			
 		}else if(currentPlayer == 2){
 			// PC IA Processing...
+			srand(time(NULL));
+			int randomColumn = (rand()%8);
+			GRID_setNextTurn(globalGrid, randomColumn, currentPlayer);
+			currentPlayer = 1;
 		}else{
 			// End of Game, no current player set.
+			printf("END OF GAME\n");
 			gameResult = 3;
 		}
+		gameResult = GAME_IsNotFinished();	
 	}
 	return 0;
 
