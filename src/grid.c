@@ -41,9 +41,10 @@ char GRID_isFinished(char grid[][6])
 	// Vertical checking
 	for(i=0 ; i<7 && nbCoins<4 ; i++)
 	{
+		currentPlayerChecking = grid[i][0];
 		for(j=0 ; j<6 && nbCoins<4 ; j++)
 		{	
-			if(grid[i][j]==currentPlayerChecking)
+			if(currentPlayerChecking != 0 && grid[i][j]==currentPlayerChecking)
 			{
 				nbCoins++;
 			}else{
@@ -53,12 +54,20 @@ char GRID_isFinished(char grid[][6])
 		}
 	}
 
+	if(nbCoins==4)
+	{
+		printf("Vertical 1 -> Player WON\n");
+		return 1;
+	}
+
+	nbCoins=0;
 	// Horizontal checking
 	for(i=0 ; i<6 && nbCoins<4 ; i++)
 	{
+		currentPlayerChecking = grid[i][0];
 		for(j=0 ; j<7 && nbCoins<4 ; j++)
 		{	
-			if(grid[j][i]==currentPlayerChecking)
+			if(currentPlayerChecking != 0 && grid[j][i]==currentPlayerChecking)
 			{
 				nbCoins++;
 			}else{
@@ -67,19 +76,24 @@ char GRID_isFinished(char grid[][6])
 			}
 		}
 	}
-
+	if(nbCoins==4)
+	{
+		printf("Vertical 2 -> Player WON\n");
+		return 1;
+	}
 
 	// Diagonal checking n°1
 	i=2;
 	j=0;
+	nbCoins=0;
 	while(j<3 && nbCoins<4)
 	{
 		col=j;
 		raw=i;
-
+		currentPlayerChecking = grid[col][raw];
 		while(col<7 && raw <6 && nbCoins<4)
 		{
-			if(grid[col][raw]==currentPlayerChecking)
+			if(currentPlayerChecking != 0 && grid[col][raw]==currentPlayerChecking)
 			{
 				nbCoins++;
 			}else{
@@ -98,18 +112,24 @@ char GRID_isFinished(char grid[][6])
 			j++;
 		}
 	}
+	if(nbCoins==4)
+	{
+		printf("Diagonal 1 -> Player WON\n");
+		return 1;
+	}
 
 	// Diagonal checking n°2
 	i=3;
 	j=0;
+	nbCoins=0;
 	while(j<3 && nbCoins<4)
 	{
 		col=j;
 		raw=i;
-
+		currentPlayerChecking = grid[col][raw];
 		while(col<7 && raw >=0 && nbCoins<4)
 		{
-			if(grid[col][raw]==currentPlayerChecking)
+			if(currentPlayerChecking != 0 && grid[col][raw]==currentPlayerChecking)
 			{
 				nbCoins++;
 			}else{
@@ -132,8 +152,8 @@ char GRID_isFinished(char grid[][6])
 	// Check if 4-coins raw is found
 	if(nbCoins==4)
 	{
+		printf("Diagonal 2 -> Player WON\n");
 		return 1;
-	}else{
-		return 0;
 	}
+	return 0;
 }

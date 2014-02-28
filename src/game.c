@@ -50,17 +50,31 @@ int GAME_main(char mode, char level)
 			printf("END OF GAME\n");
 			gameResult = 3;
 		}
-		gameResult = GAME_IsNotFinished();	
+		gameResult = GAME_IsFinished();	
 	}
 	return 0;
 
 }
 
-char GAME_IsNotFinished()
+char GAME_IsFinished()
 {
+	int i=0;
+	int total=0;
+	for(i=0 ; i<7 ; i++)
+	{
+		total += GRID_getColumnCasesLeft(globalGrid, i);
+	}
+	printf("TOTAL: %d\n", total);
 	if(GRID_isFinished(globalGrid))
 	{
-		return 0;
+		printf("A player won\n");
+		return 3;
 	}
-	return 1;
+	else if(total == 0)
+	{
+		printf("No cell left...\n");
+		return 3;
+	}
+
+	return 0;
 }
