@@ -1,5 +1,6 @@
-puissance4: main.o display.o game.o grid.o
-	gcc -o puissance4 main.o display.o game.o grid.o
+puissance4: main.o display.o game.o grid.o minimax.o
+	gcc -o puissance4 main.o display.o game.o grid.o minimax.o
+
 main.o: main.c
 	gcc -c main.c
 
@@ -12,3 +13,8 @@ game.o: game.c
 grid.o: grid.c
 	gcc -c grid.c
 
+minimax.o: minimax.c
+	gcc -c minimax.c
+
+clean:
+	rm *.o *~

@@ -13,6 +13,7 @@
 
 #include "../h/grid.h"
 #include "../h/display.h"
+#include "../h/minimax.h"
 
 /*=============== Prototypes ================*/
 void GAME_init();
