@@ -27,5 +27,5 @@ int DISPLAY_GetNextColumn()
 		printf("COLUMN: ");
 		gets(lineIn);
 	}
-	return (int)(lineIn[0])-48;
+	return (int)(lineIn[0])-49;
 }
