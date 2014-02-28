@@ -17,7 +17,7 @@
 /*=============== Prototypes ================*/
 void GAME_init();
 int GAME_main(char mode, char level);
-char GAME_IsNotFinished();
+char GAME_IsFinished();
 /*-------------------------------------------*/
 
 #endif
