@@ -5,6 +5,7 @@ Description: Function headers for minimax algorithm
 */
 
 #include "../h/minimax.h"
+#include "../h/grid.h"
 
 int MINIMAX_minimax(char grid[][6], int level){
 	int i, tmp;
@@ -13,14 +14,14 @@ int MINIMAX_minimax(char grid[][6], int level){
 	char currentPlayer = 2;
 
 	for(i=0;i<7;i++){
-		if(isCoupValid(i)){
+		if(GRID_getColumnCasesLeft(grid, i)){
 			GRID_setNextTurn(grid, i, currentPlayer);
 			tmp = MINIMAX_min(grid, max, level-1);
 			if(tmp>max){
 				max = tmp;
 				turn = i;
 			}
-			GRID_annulercoup(grid, i);
+//			GRID_annulercoup(grid, i);
 		}
 	}
 
@@ -41,11 +42,11 @@ int MINIMAX_min(char grid[][6], int max, int level){
 	for(i=0;i<7;i++){
 		if(GRID_getColumnCasesLeft(grid, i)){
 			GRID_setNextTurn(grid, i, currentPlayer);
-			tmp = MINIMAX_max(gridC, min, level-1);
+			tmp = MINIMAX_max(grid, min, level-1);
 			if(tmp < min){
 				min = tmp;
 			}
-			GRID_annulercoup(grid, i);
+//			GRID_annulercoup(grid, i);
 		}
 	}
 	return min;
@@ -69,7 +70,7 @@ int MINIMAX_max(char grid[][6], int min, int level){
 			if(tmp > max){
 				max = tmp;
 			}
-			GRID_annulerCoup(grid, i);
+//			GRID_annulerCoup(grid, i);
 		}
 	}
 	return max;
