@@ -4,12 +4,12 @@ void DISPLAY_DisplayGrid(char grid[][6])
 {
 	int i,j;
 	printf("_________\n");
-	for(i=0 ; i<7 ; i++)
+	for(i=5 ; i>=0 ; i--)
 	{
 		printf("|");
-		for(j=5 ; j>=0 ; j--)
+		for(j=0 ; j<7 ; j++)
 		{
-			printf("%d|", grid[i][j]);
+			printf("%d|", grid[j][i]);
 		}
 		printf("\n");
 	}
