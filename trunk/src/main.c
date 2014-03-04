@@ -6,6 +6,7 @@
 
 int main (int argc, char *argv[])
 {
+	system("clear");
 	printf("\033[37;40m");
 	printf("---------- PUISSANCE 4 ---------\n");
 	GAME_main('a','a');

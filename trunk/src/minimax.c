@@ -8,10 +8,11 @@ Description: Function headers for minimax algorithm
 #include "../h/grid.h"
 #include "../h/display.h"
 
-#define DEBUG
+//#define DEBUG
 int nbEval = 0;
 
 int MINIMAX_minimax(char globalGrid[][6], int level){
+	nbEval = 0;
 	int i, j, tmp;
 	int max = INT_MIN, turn = 0;
 	char grid[7][6];
@@ -102,6 +103,10 @@ int MINIMAX_eval(char grid[][6], int currentPlayer){
 		printf("%d\n", nbEval);
 		DISPLAY_DisplayGrid(grid);
 	#endif
+	if (GRID_isFinished(grid) == 1)
+		return (-500);
+	if (GRID_isFinished(grid) == 2)
+		return (500);
 	return GRID_getMaxLengthRaw(grid,currentPlayer);
 }
 

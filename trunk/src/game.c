@@ -34,23 +34,23 @@ int GAME_main(char mode, char level)
 			// Interaction with player (console mode first)
 			// **Display grid for user.
 			do{
-				system("clear");
-				DISPLAY_DisplayGrid(globalGrid);
 				nextColumn = DISPLAY_GetNextColumn();
 			}while(GRID_setNextTurn(globalGrid, nextColumn, currentPlayer));
 			currentPlayer=2;
-			
 		}else if(currentPlayer == 2){
 			// PC IA Processing...
 			srand(time(NULL));
 			int randomColumn = (rand()%8);
 			//GRID_setNextTurn(globalGrid, randomColumn, currentPlayer);
-			GRID_setNextTurn(globalGrid, MINIMAX_minimax(globalGrid,4), currentPlayer);
+			printf("Player 2 is playing ...\n");
+			GRID_setNextTurn(globalGrid, MINIMAX_minimax(globalGrid,7), currentPlayer);
 			currentPlayer = 1;
 		}else{
 			// End of Game, no current player set.
 			gameResult = 3;
 		}
+		system("clear");
+		DISPLAY_DisplayGrid(globalGrid);
 		gameResult = GAME_IsFinished();	
 	}
 	printf("END OF GAME\n");
