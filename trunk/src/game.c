@@ -45,7 +45,7 @@ int GAME_main(char mode, char level)
 			srand(time(NULL));
 			int randomColumn = (rand()%8);
 			//GRID_setNextTurn(globalGrid, randomColumn, currentPlayer);
-			GRID_setNextTurn(globalGrid, MINIMAX_minimax(globalGrid,10000), currentPlayer);
+			GRID_setNextTurn(globalGrid, MINIMAX_minimax(globalGrid,4), currentPlayer);
 			currentPlayer = 1;
 		}else{
 			// End of Game, no current player set.

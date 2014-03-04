@@ -6,6 +6,10 @@ Description: Function headers for minimax algorithm
 
 #include "../h/minimax.h"
 #include "../h/grid.h"
+#include "../h/display.h"
+
+#define DEBUG
+int nbEval = 0;
 
 int MINIMAX_minimax(char globalGrid[][6], int level){
 	int i, j, tmp;
@@ -31,7 +35,7 @@ int MINIMAX_minimax(char globalGrid[][6], int level){
 				turn = i;
 			}
 //			GRID_annulercoup(grid, i);
-			grid[i][7-GRID_getColumnCasesLeft(grid,i)] = 0;
+			grid[i][5-GRID_getColumnCasesLeft(grid,i)] = 0;
 		}
 	}
 
@@ -57,7 +61,7 @@ int MINIMAX_min(char grid[][6], int max, int level){
 				min = tmp;
 			}
 //			GRID_annulercoup(grid, i);
-			grid[i][7-GRID_getColumnCasesLeft(grid,i)] = 0;
+			grid[i][5-GRID_getColumnCasesLeft(grid,i)] = 0;
 		}
 	}
 	return min;
@@ -82,7 +86,7 @@ int MINIMAX_max(char grid[][6], int min, int level){
 				max = tmp;
 			}
 //			GRID_annulerCoup(grid, i);
-			grid[i][7-GRID_getColumnCasesLeft(grid,i)] = 0;
+			grid[i][5-GRID_getColumnCasesLeft(grid,i)] = 0;
 		}
 	}
 	return max;
@@ -91,7 +95,13 @@ int MINIMAX_max(char grid[][6], int min, int level){
 int MINIMAX_eval(char grid[][6], int currentPlayer){
 
 	// ICI le currentPlayer est le dernier joueur à avoir fait un coup.
-	
+	nbEval++;
+
+	#ifdef DEBUG
+		system("clear");
+		printf("%d\n", nbEval);
+		DISPLAY_DisplayGrid(grid);
+	#endif
 	return GRID_getMaxLengthRaw(grid,currentPlayer);
 }
 
