@@ -8,8 +8,9 @@ char currentPlayer = 0;
 
 void GAME_Init()
 {
+  gameResult = 0;
 	int i,j;
-
+  
 	for(i=0 ; i<7 ; i++)
 	{
 		for(j=0 ; j<6 ; j++)
