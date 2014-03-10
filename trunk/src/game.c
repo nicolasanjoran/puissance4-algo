@@ -50,11 +50,13 @@ int GAME_main(int mode, char level)
 
 			} else if (mode == 2){
 				srand(time(NULL));
-				int randomColumn = (rand()%8);
+				int randomColumn = (rand()%7);
 				printf("Player 2 is playing ...\n");
+        sleep(2);
 				GRID_setNextTurn(globalGrid, randomColumn, currentPlayer);
 			} else if (mode == 3){
 				printf("Player 2 is playing ...\n");
+        sleep(2);
 				GRID_setNextTurn(globalGrid, MINIMAX_minimax(globalGrid,3), currentPlayer);
 			} else if (mode == 4){
 				printf("Player 2 is playing ...\n");
