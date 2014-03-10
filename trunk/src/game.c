@@ -19,7 +19,7 @@ void GAME_Init()
 	}
 }
 
-int GAME_main(char mode, char level)
+int GAME_main(int mode, char level)
 {
 	GAME_Init();
 	printf("START OF GAME\n");
@@ -34,16 +34,31 @@ int GAME_main(char mode, char level)
 			// Interaction with player (console mode first)
 			// **Display grid for user.
 			do{
-				nextColumn = DISPLAY_GetNextColumn();
+				nextColumn = DISPLAY_GetNextColumn(1);
 			}while(GRID_setNextTurn(globalGrid, nextColumn, currentPlayer));
 			currentPlayer=2;
 		}else if(currentPlayer == 2){
 			// PC IA Processing...
-			srand(time(NULL));
-			int randomColumn = (rand()%8);
-			//GRID_setNextTurn(globalGrid, randomColumn, currentPlayer);
-			printf("Player 2 is playing ...\n");
-			GRID_setNextTurn(globalGrid, MINIMAX_minimax(globalGrid,7), currentPlayer);
+			if (mode == 1){
+				int nextColumn = 0;
+				// Interaction with player (console mode first)
+				// **Display grid for user.
+				do{
+					nextColumn = DISPLAY_GetNextColumn(2);
+				}while(GRID_setNextTurn(globalGrid, nextColumn, currentPlayer));
+
+			} else if (mode == 2){
+				srand(time(NULL));
+				int randomColumn = (rand()%8);
+				printf("Player 2 is playing ...\n");
+				GRID_setNextTurn(globalGrid, randomColumn, currentPlayer);
+			} else if (mode == 3){
+				printf("Player 2 is playing ...\n");
+				GRID_setNextTurn(globalGrid, MINIMAX_minimax(globalGrid,3), currentPlayer);
+			} else if (mode == 4){
+				printf("Player 2 is playing ...\n");
+				GRID_setNextTurn(globalGrid, MINIMAX_minimax(globalGrid,7), currentPlayer);
+			}
 			currentPlayer = 1;
 		}else{
 			// End of Game, no current player set.

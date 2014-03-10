@@ -43,6 +43,7 @@ int GRID_getMaxLengthRaw(char grid[][6], char player)
 	// Vertical checking
 	for(i=0 ; i<7 && nbCoins<4 ; i++)
 	{
+		nbCoins=0;
 		currentPlayerChecking = grid[i][0];
 		for(j=0 ; j<6 && nbCoins<4 ; j++)
 		{	
@@ -82,7 +83,7 @@ int GRID_getMaxLengthRaw(char grid[][6], char player)
 	// Diagonal checking n°1
 	i=2;
 	j=0;
-	while(j<3 && nbCoins<4)
+	while(j<4 && nbCoins<4)
 	{
 		nbCoins=0;
 		col=j;
@@ -116,7 +117,7 @@ int GRID_getMaxLengthRaw(char grid[][6], char player)
 	// Diagonal checking n°2
 	i=3;
 	j=0;
-	while(j<3 && nbCoins<4)
+	while(j<4 && nbCoins<4)
 	{
 		nbCoins=0;
 		col=j;
@@ -136,7 +137,7 @@ int GRID_getMaxLengthRaw(char grid[][6], char player)
 			raw--;
 		}
 
-		if(i<6)
+		if(i<5)
 		{
 			i++;
 		}else{
@@ -159,6 +160,7 @@ char GRID_isFinished(char grid[][6])
 	// Vertical checking
 	for(i=0 ; i<7 && nbCoins<4 ; i++)
 	{
+		nbCoins=0;
 		currentPlayerChecking = grid[i][0];
 		for(j=0 ; j<6 && nbCoins<4 ; j++)
 		{	
@@ -197,7 +199,7 @@ char GRID_isFinished(char grid[][6])
 	// Diagonal checking n°1
 	i=2;
 	j=0;
-	while(j<3 && nbCoins<4)
+	while(j<4 && nbCoins<4)
 	{
 		nbCoins=0;
 		col=j;
@@ -230,7 +232,7 @@ char GRID_isFinished(char grid[][6])
 	// Diagonal checking n°2
 	i=3;
 	j=0;
-	while(j<3 && nbCoins<4)
+	while(j<4 && nbCoins<4)
 	{
 		nbCoins=0;
 		col=j;
@@ -252,7 +254,7 @@ char GRID_isFinished(char grid[][6])
 			raw--;
 		}
 
-		if(i<6)
+		if(i<5)
 		{
 			i++;
 		}else{

@@ -11,6 +11,8 @@
 #include <string.h>
 
 void DISPLAY_DisplayGrid(char grid[][6]);
-int DISPLAY_GetNextColumn();
+int DISPLAY_GetNextColumn(int currentPlayer);
+void DISPLAY_menu();
+int DISPLAY_modeSelection();
 
 #endif
