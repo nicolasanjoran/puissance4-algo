@@ -31,7 +31,7 @@ int MINIMAX_minimax(char globalGrid[][6], int level){
 		if(GRID_getColumnCasesLeft(grid, i)){
 			GRID_setNextTurn(grid, i, currentPlayer);
 			tmp = MINIMAX_min(grid, max, level-1);
-			if(tmp>max){
+			if(tmp>max || ( (tmp == max) && (rand()%2==0) )){
 				max = tmp;
 				turn = i;
 			}
@@ -58,7 +58,7 @@ int MINIMAX_min(char grid[][6], int max, int level){
 		if(GRID_getColumnCasesLeft(grid, i)){
 			GRID_setNextTurn(grid, i, currentPlayer);
 			tmp = MINIMAX_max(grid, min, level-1);
-			if(tmp < min){
+			if(tmp < min || ( (tmp == min) && (rand()%2==0) )){
 				min = tmp;
 			}
 //			GRID_annulercoup(grid, i);
@@ -83,7 +83,7 @@ int MINIMAX_max(char grid[][6], int min, int level){
 		if(GRID_getColumnCasesLeft(grid, i)){
 			GRID_setNextTurn(grid, i, currentPlayer);
 			tmp = MINIMAX_min(grid, max, level-1);
-			if(tmp > max){
+			if(tmp > max || ( (tmp == max) && (rand()%2==0) )){
 				max = tmp;
 			}
 //			GRID_annulerCoup(grid, i);
@@ -107,7 +107,10 @@ int MINIMAX_eval(char grid[][6], int currentPlayer){
 		return (-500);
 	if (GRID_isFinished(grid) == 2)
 		return (500);
-	return GRID_getMaxLengthRaw(grid,currentPlayer);
+	if (currentPlayer == 2)
+		return - GRID_getMaxLengthRaw(grid,1)*50;
+	else
+		return GRID_getMaxLengthRaw(grid,2)*50;
 }
 
 
