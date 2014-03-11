@@ -22,8 +22,8 @@ void DISPLAY_DisplayGrid(char grid[][6])
 
 int DISPLAY_GetNextColumn(int currentPlayer)
 {
-	int lineIn;
-	while(lineIn<1 || lineIn>7)
+	char lineIn[0];
+	while(lineIn[0]<'1' || lineIn[0]>'7')
 	{
 		if (currentPlayer == 1){
 			printf("\nIt's your turn (Player 1 In Pink), please select a column.\n");
@@ -32,9 +32,11 @@ int DISPLAY_GetNextColumn(int currentPlayer)
 			printf("\nIt's your turn (Player 2 In Green), please select a column.\n");
 			printf("COLUMN: ");
 		}		
-		scanf("%d",&lineIn);
+		//scanf("%d",&lineIn);
+		gets(lineIn);
+		//printf("GETS:%d\n", lineIn);
 	}
-	return lineIn - 1;
+	return (int)(lineIn[0]) - 49;
 }
 
 void DISPLAY_menu(){
@@ -47,12 +49,13 @@ void DISPLAY_menu(){
 }
 
 int DISPLAY_modeSelection(){
-	int mode;
+	char mode[10];
 	printf("Choose the mode: ");
-	scanf("%d",&mode);
-	while (mode < 1 || mode > 5){
+	//scanf("%d",&mode);
+	gets(mode);
+	while (mode[0] < '1'|| mode[0] > '5'){
 		printf("Choose the mode (select a number line between 1 and 5): ");	
-		scanf("%d",&mode);
+		gets(mode);
 	}
-	return mode;
+	return (int)(mode[0]-48);
 }
