@@ -1,3 +1,9 @@
+/*
+# File: grid.c
+# Author: Anjoran Nicolas & Briot Julien
+# Description: Functions used for handle a grid
+*/
+
 #include "../h/grid.h"
 
 int GRID_getColumnCasesLeft(char grid[][6], int colNum)

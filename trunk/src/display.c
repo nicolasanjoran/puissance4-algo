@@ -1,3 +1,9 @@
+/*
+# File: display.c
+# Author: Anjoran Nicolas & Briot Julien
+# Description: Functions which display a grid, a menu, a mode selection and a column selection
+*/
+
 #include "../h/display.h"
 
 void DISPLAY_DisplayGrid(char grid[][6])

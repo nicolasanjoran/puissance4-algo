@@ -1,14 +1,17 @@
+/*
+# File: game.c
+# Author: Anjoran Nicolas & Briot Julien
+# Description: Functions used for handle a round
+*/
+
 #include "../h/game.h"
 
 /*=============== Global vars ===============*/
 char globalGrid[7][6]; // 7 columns, 6 rows
-char gameResult = 0; // 0 => Playing, 1 => Player 1 won, 2 => Player 2 won, 3 => Game aborted.
-char currentPlayer = 0;
 /*-------------------------------------------*/
 
 void GAME_Init()
 {
-  gameResult = 0;
 	int i,j;
   
 	for(i=0 ; i<7 ; i++)
@@ -20,12 +23,14 @@ void GAME_Init()
 	}
 }
 
-int GAME_main(int mode, char level)
+int GAME_main(int mode)
 {
 	GAME_Init();
 	printf("START OF GAME\n");
 	DISPLAY_DisplayGrid(globalGrid);
 	srand(time(NULL));
+	char gameResult = 0; // 0 => Playing, 1 => Player 1 won, 2 => Player 2 won, 3 => Game aborted.
+	char currentPlayer = 0;
 	currentPlayer = (rand()%2 +1);
 	while(gameResult == 0)
 	{
