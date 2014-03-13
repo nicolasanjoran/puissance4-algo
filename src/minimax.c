@@ -1,12 +1,10 @@
 /*
-File: minimax.C
+File: minimax.c
 Author: ANJORAN Nicolas, BRIOT Julien
-Description: Function headers for minimax algorithm
+Description: Functions used for handle the minimax algorithm
 */
 
 #include "../h/minimax.h"
-#include "../h/grid.h"
-#include "../h/display.h"
 
 //#define DEBUG
 int nbEval = 0;
@@ -30,7 +28,7 @@ int MINIMAX_minimax(char globalGrid[][6], int level){
 	for(i=0;i<7;i++){
 		if(GRID_getColumnCasesLeft(grid, i)){
 			GRID_setNextTurn(grid, i, currentPlayer);
-			tmp = MINIMAX_min(grid, max, level-1);
+			tmp = MINIMAX_min(grid, level-1);
 			if(tmp>max || ( (tmp == max) && (rand()%3==0) )){
 				max = tmp;
 				turn = i;
@@ -44,7 +42,7 @@ int MINIMAX_minimax(char globalGrid[][6], int level){
 }
 
 
-int MINIMAX_min(char grid[][6], int max, int level){
+int MINIMAX_min(char grid[][6], int level){
 	int i, tmp;
 	int min = INT_MAX;
 
@@ -57,7 +55,7 @@ int MINIMAX_min(char grid[][6], int max, int level){
 	for(i=0;i<7;i++){
 		if(GRID_getColumnCasesLeft(grid, i)){
 			GRID_setNextTurn(grid, i, currentPlayer);
-			tmp = MINIMAX_max(grid, min, level-1);
+			tmp = MINIMAX_max(grid, level-1);
 			if(tmp < min || ( (tmp == min) && (rand()%3==0) )){
 				min = tmp;
 			}
@@ -69,7 +67,7 @@ int MINIMAX_min(char grid[][6], int max, int level){
 }
 
 
-int MINIMAX_max(char grid[][6], int min, int level){
+int MINIMAX_max(char grid[][6], int level){
 	int i, tmp;
 	int max = INT_MIN;
 
@@ -82,7 +80,7 @@ int MINIMAX_max(char grid[][6], int min, int level){
 	for(i=0;i<7;i++){
 		if(GRID_getColumnCasesLeft(grid, i)){
 			GRID_setNextTurn(grid, i, currentPlayer);
-			tmp = MINIMAX_min(grid, max, level-1);
+			tmp = MINIMAX_min(grid, level-1);
 			if(tmp > max || ( (tmp == max) && (rand()%3==0) )){
 				max = tmp;
 			}
