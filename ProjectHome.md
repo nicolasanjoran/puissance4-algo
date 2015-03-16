@@ -1,0 +1,1 @@
+Light-weighted "Puissance 4" algorithm in C.
